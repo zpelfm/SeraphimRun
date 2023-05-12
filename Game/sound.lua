@@ -31,20 +31,14 @@ function clickSound(i, state)
 end
 
 
-function playSound(fileName, state)
+function playBgm(fileName, state)
   sList.name = fileName
-  sList.state = state
-  if state then
-    upsList = {timer = 0, name = sList.name}
-
-  if sList.name == "seria" then
-    upsList.mode = 1 else upsList.mode = 0
-  end
-
-  else upsList = {}
-  end
-
   bgm(state)
+end
+
+function playSound(fileName, state)
+  local clickSnd = laN('SoundPacks/'..fileName..'.ogg', "stream")
+  laN_check(clickSnd, state)
 end
 
 function upSound(dt)

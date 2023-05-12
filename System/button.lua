@@ -84,11 +84,11 @@ end
 function fireEvent(name)
   --title
   if name == "help" then
-    page:changepage(stat[2])
+    page:changePage(stat[2])
   elseif name == "play" then
-    page:changepage(stat[3])
+    page:changePage(stat[3])
   elseif name == "retry" then
-    page:changepage(stat[3])
+    page:changePage(stat[3])
   elseif name == "exit" then
     love.event.push("quit")
   end

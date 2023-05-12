@@ -4,7 +4,7 @@ page.image = {
   lgN("ImagePacks/title.png"), --title
   lgN("ImagePacks/help.png"), --help
   "", --play
-  "", --clear
+  lgN("ImagePacks/win_bg.png"), --clear
   lgN("ImagePacks/failed.png") --failed
 }
 
@@ -23,11 +23,14 @@ page.btn = {
 
 
 function page:load()
+  page:changePage(stat[1])
 end
 
 function page:update(dt, pg)
   if pg == stat[3] then
     game:update(dt)
+  elseif pg == stat[4] then
+    winUI:update(dt)
   end
   button.update(dt)
 end
@@ -51,6 +54,13 @@ function page:draw(pg)
     button:active("help", false)
     button:active("retry", false)
 
+  elseif pg == stat[4] then --clear
+    lg.draw(page.image[4])
+    winUI:draw()
+    button:active("play", false)
+    button:active("help", false)
+    button:active("retry", true)
+
   elseif pg == stat[5] then --failed
     lg.draw(page.image[5])
     button:active("play", false)
@@ -61,11 +71,18 @@ function page:draw(pg)
   button:draw()
 end
 
-function page:changepage(pg)
+function page:changePage(pg)
   local oldpage = currentPage
 
-  if pg == stat[3] then
+  if pg == stat[1] then
+    playBgm("minigame_main", true)
+  elseif pg == stat[3] then
     game:start()
+  elseif pg == stat[4] then
+    playSound("effect/sound_ye", true)
+  elseif pg == stat[5] then
+    playBgm("minigame_play", false)
+    playSound("effect/sound_lose", true)
   end
 
   currentPage = pg

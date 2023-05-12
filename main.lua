@@ -3,12 +3,14 @@ require 'System'
 tick = require 'tick'
 anim8 = require 'System/anim8'
 page = require 'System/page'
+sound = require 'Game/sound'
 game = require 'game'
 monster = require 'System/monster'
-
+goal = require 'System/goal'
+timerGauge = require 'System/timerGauge'
 stat = {'title', 'help', 'play', 'win', 'lose'}
 currentPage = stat[1]
-
+winUI = require 'System/winUI'
 
 player = require 'System/player'
 
@@ -23,6 +25,7 @@ function love.load(arg)
   page:load()
   tick.framerate = -1
   tick.rate = .03
+
 end
 
 function love.update(dt)

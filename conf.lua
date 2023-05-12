@@ -19,8 +19,9 @@ g_goalDisRate = 1.3
 g_monsterTypeCount = 2
 g_monsterBaseScale = .8
 g_debugLine = 1
-g_monsterThick = 5
-g_clearTime = 10
+g_monsterThick = 10
+g_clearTime = 13
+g_goalSpawnTime = g_clearTime - 3
 
 --field = {maxW = 720, maxH = 320, minW = 180, minH = 80, vanish = 108}
 

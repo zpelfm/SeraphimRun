@@ -89,6 +89,9 @@ function monster:new()
     mon.image = anim8.newAnimation(mon.grid('1-4', 1), 0.1)
   elseif type == 2 then
     mon.image = anim8.newAnimation(mon.grid('1-4', 1), 0.1)
+    if mon.moveDir == -1 then
+      mon.image.flippedH = true
+    end
   end
 
   --초기 위치 설정
@@ -123,8 +126,10 @@ function monster:update(dt)
 
     if v.posX < minX then
       v.moveDir = 1
+      v.image.flippedH = false
     elseif v.posX > maxX then
       v.moveDir = -1
+      v.image.flippedH = true
     end
     
     v.posY = g_trackStartHeight + disRate * g_trackHeight
@@ -139,7 +144,7 @@ function monster:update(dt)
   end
 
   spawntick = spawntick + tick.dt
-  if spawntick >= spawntime then
+  if spawntick >= spawntime and game.isSpawnable() == 1 then
     spawntick = 0
     monster:new()
   end
